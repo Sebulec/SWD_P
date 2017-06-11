@@ -16,6 +16,7 @@ public class User {
     Double height;
     Gender gender;
     BMI bmi;
+    BMR bmr;
     ActivityType activityType;
 
     public User(Integer age, Double weight, Double height, Gender gender, ActivityType activityType) {
@@ -25,6 +26,7 @@ public class User {
         this.gender = gender;
         this.bmi = new BMI(this);
         this.activityType = activityType;
+        this.bmr = new BMR(this);
     }
 
     public Integer getAge() {
