@@ -21,9 +21,10 @@ public class DietApp extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLApp.fxml"));
         Scene scene = new Scene(root);
-
+      //  root.setController(new FXMLDocumentControler);
         stage.setScene(scene);
         stage.show();
+        System.out.println("You clicked me!");
     }
 
     /**
