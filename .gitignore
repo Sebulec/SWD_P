@@ -63,3 +63,7 @@ fabric.properties
 /DietApp/build/
 .idea/
 DietApp/DietApp.iml
+DietApp/target/
+DietApp/nbproject/
+DietApp/target/classes/
+DietApp/target/generated-sources/
