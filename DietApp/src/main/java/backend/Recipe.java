@@ -10,9 +10,13 @@ import com.google.gson.*;
 import java.lang.reflect.Type;
 
 /**
- *
  * @author sebastiankotarski
  */
+
+enum CaloriesLevel {
+    low, normal, high
+}
+
 public class Recipe implements JsonDeserializer<Recipe> {
 
     String title;
@@ -22,6 +26,7 @@ public class Recipe implements JsonDeserializer<Recipe> {
     Double fat;
     String url;
     RecipeType recipeType;
+    CaloriesLevel caloriesLevel;
 
     public Recipe(String title, Double calories, Double carbohydrates, Double proteins, Double fat, String url) {
         this.title = title;
@@ -75,6 +80,16 @@ public class Recipe implements JsonDeserializer<Recipe> {
 
     public RecipeType getRecipeType() {
         return recipeType;
+    }
+
+    public CaloriesLevel getCaloriesLevel() {
+        if (this.getCalories() <= 100) {
+            return CaloriesLevel.low;
+        } else if (this.getCalories() > 250) {
+            return CaloriesLevel.high;
+        } else {
+            return CaloriesLevel.normal;
+        }
     }
 
 }

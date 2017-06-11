@@ -24,7 +24,7 @@ import java.util.List;
 public class RecipeFactory {
 
     public static List<Recipe> getRecipesWithType(final RecipeType recipeType) throws FileNotFoundException {
-        Recipe[] recipes = null;
+        Recipe[] recipes;
         JsonDeserializer<Recipe> deserializer = new Recipe();
         Gson gson = new GsonBuilder().registerTypeAdapter(Recipe.class, deserializer).create();
         String filename = null;
