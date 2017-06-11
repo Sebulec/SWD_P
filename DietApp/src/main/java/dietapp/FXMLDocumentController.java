@@ -5,8 +5,12 @@
  */
 package dietapp;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import backend.RecipeFactory;
+import backend.RecipeType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,11 +29,17 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        try {
+            RecipeFactory.getRecipesWithType(RecipeType.supper);
+        } catch (FileNotFoundException e) {
+            System.out.println("Change working directory");
+        }
     }
 
 }

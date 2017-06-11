@@ -5,47 +5,67 @@
  */
 package backend;
 
+import com.google.gson.*;
+
+import java.lang.reflect.Type;
+
 /**
  *
  * @author sebastiankotarski
  */
-public class Recipe {
+public class Recipe implements JsonDeserializer<Recipe> {
 
     String title;
-    Integer calories;
-    Integer carbohydrates;
-    Integer proteins;
-    Integer fat;
+    Double calories;
+    Double carbohydrates;
+    Double proteins;
+    Double fat;
     String url;
     RecipeType recipeType;
 
-    public Recipe(String title, Integer calories, Integer carbohydrates, Integer proteins, Integer fat, String url, RecipeType recipeType) {
+    public Recipe(String title, Double calories, Double carbohydrates, Double proteins, Double fat, String url) {
         this.title = title;
         this.calories = calories;
         this.carbohydrates = carbohydrates;
         this.proteins = proteins;
         this.fat = fat;
         this.url = url;
-        this.recipeType = recipeType;
+    }
+
+    @Override
+    public Recipe deserialize(JsonElement json, Type type,
+                              JsonDeserializationContext context) throws JsonParseException {
+        JsonObject jobject = json.getAsJsonObject();
+        Double calories = Double.parseDouble(jobject.get("calories").getAsString());
+        return new Recipe(jobject.get("title").getAsString(),
+                calories,
+                jobject.get("totalCarbs").getAsDouble(),
+                jobject.get("protein").getAsDouble(),
+                jobject.get("totalFat").getAsDouble(),
+                jobject.get("url").getAsString());
+    }
+
+    public Recipe() {
+
     }
 
     public String getTitle() {
         return title;
     }
 
-    public Integer getCalories() {
+    public Double getCalories() {
         return calories;
     }
 
-    public Integer getCarbohydrates() {
+    public Double getCarbohydrates() {
         return carbohydrates;
     }
 
-    public Integer getProteins() {
+    public Double getProteins() {
         return proteins;
     }
 
-    public Integer getFat() {
+    public Double getFat() {
         return fat;
     }
 

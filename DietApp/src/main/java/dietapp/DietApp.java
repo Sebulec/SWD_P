@@ -5,6 +5,8 @@
  */
 package dietapp;
 
+import backend.RecipeFactory;
+import backend.RecipeType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
