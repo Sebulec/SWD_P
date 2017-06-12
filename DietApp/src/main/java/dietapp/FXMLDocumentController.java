@@ -6,6 +6,7 @@
 package dietapp;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,7 +14,11 @@ import java.util.ResourceBundle;
 import backend.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.web.WebView;
 import javafx.collections.ObservableList;
@@ -24,6 +29,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Control;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
 
@@ -71,9 +77,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button website;
 
+    @FXML
+    private Button decisionProblem;
+
     List<Recipe> breakfastList;
     List<Recipe> dinnerList;
     List<Recipe> supperList;
+    List<Recipe> pageList;
     ObservableList<String> supp = FXCollections.observableArrayList();
     ObservableList<String> breakf = FXCollections.observableArrayList();
     ObservableList<String> dinn = FXCollections.observableArrayList();
@@ -83,6 +93,19 @@ public class FXMLDocumentController implements Initializable {
     Gender g;
     ActivityType aT;
     private WebEngine engine;
+
+
+    @FXML
+    private void onDecisionButton(ActionEvent e) throws IOException {
+        Node node=(Node) e.getSource();
+        Stage stage=(Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLAnalysis.fxml"));
+        Scene scene = new Scene(root);
+        //  root.setController(new FXMLDocumentControler);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
 
 
 
@@ -114,13 +137,16 @@ public class FXMLDocumentController implements Initializable {
 
         if (x == supper) {
             recipeList.setItems(supp);
+            pageList=supperList;
 
         }
         if (x == breakfast) {
             recipeList.setItems(breakf);
+            pageList=breakfastList;
         }
         if (x == dinner) {
             recipeList.setItems(dinn);
+            pageList=dinnerList;
         }
 
         User Marysia= new User(age,w,h,g,aT);
@@ -213,9 +239,9 @@ public class FXMLDocumentController implements Initializable {
                             String s = newValue;
                             //recipeList.getSelectionModel().
                             System.out.println(s);
-                            for (int i = 0; i < supperList.size() - 1; i++) {
-                                if (supperList.get(i).getTitle() == s) {
-                                    page = supperList.get(i).getUrl();
+                            for (int i = 0; i < pageList.size() - 1; i++) {
+                                if (pageList.get(i).getTitle() == s) {
+                                    page = pageList.get(i).getUrl();
                                 }
                             }
                             engine.load(page);

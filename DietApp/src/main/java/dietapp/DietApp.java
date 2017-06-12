@@ -17,9 +17,10 @@ import javafx.stage.Stage;
  */
 public class DietApp extends Application {
 
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLApp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDecision.fxml"));
         Scene scene = new Scene(root);
       //  root.setController(new FXMLDocumentControler);
         stage.setScene(scene);
