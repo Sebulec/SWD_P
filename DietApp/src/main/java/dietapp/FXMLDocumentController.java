@@ -87,6 +87,7 @@ public class FXMLDocumentController implements Initializable {
     ObservableList<String> supp = FXCollections.observableArrayList();
     ObservableList<String> breakf = FXCollections.observableArrayList();
     ObservableList<String> dinn = FXCollections.observableArrayList();
+    ObservableList<String> result = FXCollections.observableArrayList();
     Integer age;
     Double w;
     Double h;
@@ -161,6 +162,12 @@ public class FXMLDocumentController implements Initializable {
             public void completed(List<? extends DietEntity> entities) {
                 // todo fill listview
                 List<Recipe> selectedRecipes = (List<Recipe>) entities;
+                System.out.println("jestem tu");
+                for (int i = 0; i < selectedRecipes.size(); i++) {
+                    result.add(selectedRecipes.get(i).getTitle());
+                   System.out.println(selectedRecipes.get(i).getTitle());
+                }
+                recipeList.setItems(result);
             }
 
             @Override
