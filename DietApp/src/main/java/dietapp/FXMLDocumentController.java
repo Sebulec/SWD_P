@@ -147,6 +147,22 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         try {
+
+            DecisionMaker decisionMaker = new DecisionMaker();
+            User user = new User(23,73., 173., Gender.male, ActivityType.high);
+
+            decisionMaker.makeDecision(user, RecipeType.supper, new RecipeFactory().getRecipesWithType(RecipeType.dinner), new CompletionHandler() {
+                @Override
+                public void completed(List<Recipe> recipes) {
+
+                }
+
+                @Override
+                public void stopped() {
+
+                }
+            });
+
             genderW.setSelected(true);
             physicalS.setSelected(true);
             RecipeFactory.getRecipesWithType(RecipeType.supper);
