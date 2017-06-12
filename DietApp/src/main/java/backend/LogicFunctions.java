@@ -150,7 +150,7 @@ public class LogicFunctions {
     }
 
     private boolean function15() {
-        return implies(!(alphaU(5) && alphaW(6)), !alphaU(3));
+        return implies(!(alphaU(5) && alphaW(6)), !alphaY(3));
     }
 
     private boolean function16() {
@@ -159,8 +159,7 @@ public class LogicFunctions {
 
     public boolean functionF() {
         return function1() && function2() && function3() && function4() && function5() && function6() &&
-                function7() && function8() && function9() && function10() && function11() && function12() &&
-                function13() && function14() && function15() && function15() && function16();
+                function7() && function8() && function9() && function10() && function11();
     }
 
     public boolean functionY() {
