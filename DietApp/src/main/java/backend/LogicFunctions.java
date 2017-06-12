@@ -84,8 +84,10 @@ public class LogicFunctions {
 
     public boolean incrementAlphas() {
         if (!incrementBooleanList(alphasU)) {
-            if (!incrementBooleanList(alphasY)) {
-                return false;
+            if (!incrementBooleanList(alphasW)) {
+                if (!incrementBooleanList(alphasY)) {
+                    return false;
+                }
             }
         }
         return true;
