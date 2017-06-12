@@ -5,9 +5,9 @@ import java.util.List;
 
 public class LogicFunctions {
     public LogicFunctions() {
-        this.alphasU = Arrays.asList(false,false,false,false,false,false);
-        this.alphasW = Arrays.asList(false,false,false,false,false,false);
-        this.alphasY = Arrays.asList(false,false,false);
+        this.alphasU = Arrays.asList(false, false, false, false, false, false);
+        this.alphasW = Arrays.asList(false, false, false, false, false, false);
+        this.alphasY = Arrays.asList(false, false, false);
     }
 
     private List<Boolean> alphasU;
@@ -30,15 +30,14 @@ public class LogicFunctions {
         return !p || q;
     }
 
-    public Boolean incrementBooleanList(List<Boolean> list){
+    public Boolean incrementBooleanList(List<Boolean> list) {
         for (int index = 0; index < list.size(); index++) {
             Boolean cell = list.get(index);
-            if(!cell) {
-                list.set(index,true);
+            if (!cell) {
+                list.set(index, true);
                 return true;
-            }
-            else{
-                list.set(index,false);
+            } else {
+                list.set(index, false);
             }
         }
         return false;
@@ -106,5 +105,11 @@ public class LogicFunctions {
 
     public boolean function16() {
         return !(alphaY(1) && alphaY(2)) && !(alphaY(2) && alphaY(3)) && !(alphaY(1) && alphaY(3));
+    }
+
+    public boolean functionF() {
+        return function1() && function2() && function3() && function4() && function5() && function6() &&
+                function7() && function8() && function9() && function10() && function11() && function12() &&
+                function13() && function14() && function15() && function15() && function16();
     }
 }
