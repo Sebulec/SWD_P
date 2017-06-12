@@ -1,71 +1,97 @@
 package backend;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LogicFunctions {
-    public static boolean implies(boolean p, boolean q) {
+    public LogicFunctions() {
+        this.alphasU = Arrays.asList(false,false,false,false,false,false);
+        this.alphasW = Arrays.asList(false,false,false,false,false,false);
+        this.alphasY = Arrays.asList(false,false,false);
+    }
+
+    private List<Boolean> alphasU;
+    private List<Boolean> alphasW;
+    private List<Boolean> alphasY;
+
+    public Boolean alphaU(int index) {
+        return alphasU.get(--index);
+    }
+
+    public Boolean alphaW(int index) {
+        return alphasW.get(--index);
+    }
+
+    public Boolean alphaY(int index) {
+        return alphasY.get(--index);
+    }
+
+    public boolean implies(boolean p, boolean q) {
         return !p || q;
     }
 
-    public static boolean function1(boolean alphaU1, boolean alphaU2, boolean alphaW4, boolean alphaW7) {
-        return implies(alphaW4 && (alphaU1 || alphaU2), alphaW7);
+    public boolean function1() {
+        return implies(alphaW(4) && (alphaU(1) || alphaU(2)), alphaW(7));
     }
 
-    public static boolean function2(boolean alphaW4, boolean alphaW8, boolean alphaU3) {
-        return implies(alphaW4 && alphaU3, alphaW8);
+    public boolean function2() {
+        return implies(alphaW(4) && alphaU(3), alphaW(8));
     }
 
-    public static boolean function3(boolean alphaW5, boolean alphaW7, boolean alphaU1) {
-        return implies(alphaW5 && alphaU1, alphaW7);
+    public boolean function3() {
+        return implies(alphaW(5) && alphaU(1), alphaW(7));
     }
 
-    public static boolean function4(boolean alphaW5, boolean alphaW8, boolean alphaU2) {
-        return implies(alphaW5 && alphaU2, alphaW8);
+    public boolean function4() {
+        return implies(alphaW(5) && alphaU(2), alphaW(8));
     }
 
-    public static boolean function5(boolean alphaW5, boolean alphaW9, boolean alphaU3) {
-        return implies(alphaW5 && alphaU3, alphaW9);
+    public boolean function5() {
+        return implies(alphaW(5) && alphaU(3), alphaW(9));
     }
 
-    public static boolean function6(boolean alphaU1, boolean alphaU2, boolean alphaW6, boolean alphaW8) {
-        return implies(alphaW6 && (alphaU1 || alphaU2), alphaW8);
+    public boolean function6() {
+        return implies(alphaW(6) && (alphaU(1) || alphaU(2)), alphaW(8));
     }
 
-    public static boolean function7(boolean alphaW6, boolean alphaW9, boolean alphaU3) {
-        return implies(alphaW6 && alphaU3, alphaW9);
+    public boolean function7() {
+        return implies(alphaW(6) && alphaU(3), alphaW(9));
     }
 
-    public static boolean function8(boolean alphaU4, boolean alphaU6, boolean alphaW7, boolean alphaY1) {
-        return implies((alphaU4 || alphaU6) && alphaW7, alphaY1);
+    public boolean function8() {
+        return implies((alphaU(4) || alphaU(6)) && alphaW(7), alphaY(1));
     }
 
-    public static boolean function9(boolean alphaU4, boolean alphaU6, boolean alphaW8, boolean alphaW9, boolean alphaY2) {
-        return implies((alphaU4 || alphaU6) && (alphaW8 || alphaW9), alphaY2);
+    public boolean function9() {
+        return implies((alphaU(4) || alphaU(6)) && (alphaW(8) || alphaW(9)), alphaY(2));
     }
 
-    public static boolean function10(boolean alphaU5, boolean alphaW7, boolean alphaW8, boolean alphaY2) {
-        return implies(alphaU5 && (alphaW7 || alphaW8), alphaY2);
+    public boolean function10() {
+        return implies(alphaU(5) && (alphaW(7) || alphaW(8)), alphaY(2));
     }
 
-    public static boolean function11(boolean alphaU5, boolean alphaW9, boolean alphaY3) {
-        return implies(alphaU5 && alphaW9, alphaY3);
+    public boolean function11() {
+        return implies(alphaU(5) && alphaW(9), alphaY(3));
     }
 
-    public static boolean function12(boolean alphaU4, boolean alphaU6, boolean alphaW7, boolean alphaY1) {
-        return implies(!((alphaU4 || alphaU6) && alphaW7), !alphaY1);
+    public boolean function12() {
+        return implies(!((alphaU(4) || alphaU(6)) && alphaW(7)), !alphaY(1));
     }
 
-    public static boolean function13(boolean alphaU4, boolean alphaU6, boolean alphaW8, boolean alphaW9, boolean alphaY2) {
-        return implies(!((alphaU4 || alphaU6) && (alphaW8 || alphaW9)), !alphaY2);
+    public boolean function13() {
+        return implies(!((alphaU(4) || alphaU(6)) && (alphaW(8) || alphaW(9))), !alphaY(2));
     }
 
-    public static boolean function14(boolean alphaU5, boolean alphaW7, boolean alphaW8, boolean alphaY2) {
-        return implies(!(alphaU5 && (alphaW7 || alphaW8)), !alphaY2);
+    public boolean function14() {
+        return implies(!(alphaU(5) && (alphaW(7) || alphaW(8))), !alphaY(2));
     }
 
-    public static boolean function15(boolean alphaU5, boolean alphaW9, boolean alphaU3) {
-        return implies(!(alphaU5 && alphaW9), !alphaU3);
+    public boolean function15() {
+        return implies(!(alphaU(5) && alphaW(9)), !alphaU(3));
     }
 
-    public static boolean function16(boolean alphaY1, boolean alphaY2, boolean alphaY3) {
-        return !(alphaY1 && alphaY2) && !(alphaY2 && alphaY3) && !(alphaY1 && alphaY3);
+    public boolean function16() {
+        return !(alphaY(1) && alphaY(2)) && !(alphaY(2) && alphaY(3)) && !(alphaY(1) && alphaY(3));
     }
 }
