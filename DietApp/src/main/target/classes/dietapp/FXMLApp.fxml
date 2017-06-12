@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<VBox prefHeight="749.0" prefWidth="1203.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dietapp.FXMLDocumentController">
+<VBox prefHeight="749.0" prefWidth="1203.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dietapp.FXMLDocumentController">
     <children>
         <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
             <items>
@@ -38,12 +39,10 @@
                                                         <TextField fx:id="height" layoutX="243.0" layoutY="161.0" prefHeight="31.0" prefWidth="78.0" style="-fx-font-size: 18px; -fx-text-fill: white;" />
                                                         <TextField fx:id="years" layoutX="403.0" layoutY="161.0" prefHeight="31.0" prefWidth="91.0" style="-fx-font-size: 18px; -fx-text-fill: white;" />
                                                         <Label layoutX="18.0" layoutY="250.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Aktywność fizyczna" />
-                                                        <Label layoutX="18.0" layoutY="385.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Wybierz rodzaj posiłku" />
-                                                        <Button fx:id="breakfast" layoutX="20.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: #242f41;" text="Śniadanie" />
-                                                        <Button fx:id="dinner" layoutX="197.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: #242f41;" text="Obiad" />
-                                                        <Button fx:id="supper" layoutX="376.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="114.0" style="-fx-font-size: 18px;" text="Kolacja" />
-                                                        <Button fx:id="website" layoutX="130.0" layoutY="562.0" mnemonicParsing="false" onAction="#changePage" prefHeight="39.0" prefWidth="181.0" style="-fx-font-size: 18px;" text="Zmięń stronę" />
-
+                                                        <Label layoutX="18.0" layoutY="385.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Wybierz porę dnia" />
+                                                        <Button fx:id="breakfast" layoutX="20.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #61d4c3;" text="Śniadanie" />
+                                                        <Button fx:id="dinner" layoutX="207.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #61d4c3;" text="Obiad" />
+                                                        <Button fx:id="supper" layoutX="376.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-background-color: #61d4c3;" text="Kolacja" />
                                                         <RadioButton fx:id="genderM" layoutX="217.0" layoutY="80.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Mężczyzna">
                                                             <toggleGroup>
                                                                 <ToggleGroup fx:id="gender" />
@@ -67,18 +66,18 @@
                                     <children>
                                         <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="737.0" prefWidth="651.0">
                                             <items>
-
-
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                    <content>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="652.0">
                                                             <children>
-                                                                <ListView fx:id="recipeList" layoutX="1.0" layoutY="-2.0" prefHeight="363.0" prefWidth="649.0" style="-fx-background-color: #242f41;" />
+                                                                <ListView fx:id="list" layoutX="1.0" layoutY="-2.0" prefHeight="363.0" prefWidth="649.0" style="-fx-background-color: #242f41;" />
                                                             </children>
                                                         </AnchorPane>
-
-
+                                                    </content>
+                                                </ScrollPane>
                                                 <AnchorPane prefHeight="383.0" prefWidth="447.0">
                                                     <children>
-                                                        <WebView fx:id="webContent" layoutX="-7.0" prefHeight="370.0" prefWidth="651.0" />
+                                                        <WebView layoutX="-7.0" prefHeight="370.0" prefWidth="651.0" />
                                                     </children>
                                                 </AnchorPane>
                                             </items>
