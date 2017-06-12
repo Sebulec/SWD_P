@@ -45,11 +45,11 @@ public class LogicFunctions {
         this.alphasY = alphasY;
     }
 
-    public List<Boolean> setAlphasU(){
+    public List<Boolean> getAlphasU(){
         return alphasY;
     }
 
-    public List<Boolean> setAlphasY(){
+    public List<Boolean> getAlphasY(){
         return alphasY;
     }
 
