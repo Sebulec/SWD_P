@@ -29,6 +29,22 @@ public class User {
         this.bmr = new BMR(this);
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public BMI getBmi() {
+        return bmi;
+    }
+
+    public BMR getBmr() {
+        return bmr;
+    }
+
+    public ActivityType getActivityType() {
+        return activityType;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -51,5 +67,21 @@ public class User {
 
     public void setHeight(Double height) {
         this.height = height;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setBmi(BMI bmi) {
+        this.bmi = bmi;
+    }
+
+    public void setBmr(BMR bmr) {
+        this.bmr = bmr;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
     }
 }
