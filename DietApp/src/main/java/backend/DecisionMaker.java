@@ -37,7 +37,7 @@ public class DecisionMaker {
                 break;
         }
         logicFunctions = new LogicFunctions(decisionIndex1,decisionIndex2);
-//        List<Boolean>
+//        List<Boolean> alphasW
         switch (user.bmi.weightType) {
             case underweight:
                 logicFunctions.setAlphasU(Arrays.asList(true,false,false));

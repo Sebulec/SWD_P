@@ -1,14 +1,5 @@
 package backend;
 
-/**
- * Created by sebastiankotarski on 11.06.2017.
- */
-enum Gender {
-    male, female
-}
-enum ActivityType {
-    low, normal,high
-}
 public class User {
 
     Integer age;
