@@ -43,15 +43,6 @@ public class FXMLAnalysisController implements Initializable {
     private TextField years;
 
     @FXML
-    private RadioButton physicalS;
-
-    @FXML
-    private RadioButton physicalM;
-
-    @FXML
-    private RadioButton physicalH;
-
-    @FXML
     private RadioButton genderW;
 
     @FXML
@@ -59,6 +50,8 @@ public class FXMLAnalysisController implements Initializable {
 
     @FXML
     private ListView<String> recipeList;
+    @FXML
+    private ListView<String> entryList;
 
     @FXML
     private Button analysis;
@@ -69,6 +62,7 @@ public class FXMLAnalysisController implements Initializable {
 
 
     List<Recipe> supperList;
+    ObservableList<String> result = FXCollections.observableArrayList();
     ObservableList<String> supp = FXCollections.observableArrayList();
 
     Integer age;
@@ -108,16 +102,8 @@ public class FXMLAnalysisController implements Initializable {
             g=Gender.female;
         }
 
-        if(physicalH.isSelected()){
-            aT=ActivityType.high;
-        }
-        else if(physicalM.isSelected()){
-            aT=ActivityType.normal;
-        }
-        else {
-            aT=ActivityType.low;
-        }
 
+        aT=ActivityType.normal;
         User Marysia= new User(age,w,h,g,aT);
         System.out.println(Marysia.getAge()+ " "+Marysia.getHeight()+" "+Marysia.getWeight()+" "+Marysia.getActivityType());
 
@@ -129,6 +115,35 @@ public class FXMLAnalysisController implements Initializable {
             @Override
             public void completed(List<? extends DietEntity> entities) {
                 List<AnalysisResponse> selectedAnalysisResponses = (List<AnalysisResponse>) entities;
+                result.removeAll(result);
+                for (int i = 0; i < selectedAnalysisResponses.size(); i++) {
+                    String type;
+                    String activity;
+                    if(selectedAnalysisResponses.get(i).getRecipeType().toString()=="dinner"){
+                        type="obiad";
+                    }
+                    else if(selectedAnalysisResponses.get(i).getRecipeType().toString()=="super"){
+                        type="kolację";
+                    }
+                    else{
+                        type="śniadanie";
+                    }
+                    if(selectedAnalysisResponses.get(i).getActivityType().toString()=="low"){
+                        activity="niską";
+                    }
+                    else if(selectedAnalysisResponses.get(i).getRecipeType().toString()=="high"){
+                        activity="wysoką";
+                    }
+                    else{
+                        activity="średnią";
+                    }
+                    result.add("Posiadając "+activity +" aktywność fizyczną możesz zjeść tę potrawę na "+type);
+                    //result.add(selectedAnalysisResponses.get(i).getRecipeType().toString() + " "+selectedAnalysisResponses.get(i).getActivityType().toString());
+                }
+                if(selectedAnalysisResponses.size()==0){
+                    result.add("Brak warunków, aby zjeść daną potrawę");
+                }
+                entryList.setItems(result);
             }
 
             @Override
@@ -147,7 +162,7 @@ public class FXMLAnalysisController implements Initializable {
         // TODO
         try {
             genderW.setSelected(true);
-            physicalS.setSelected(true);
+            //physicalS.setSelected(true);
             //RecipeFactory.getRecipesWithType(RecipeType.supper);
 
             RecipeFactory recipeF = new RecipeFactory();
@@ -158,7 +173,7 @@ public class FXMLAnalysisController implements Initializable {
             for (int i = 0; i < supperList.size() - 1; i++) {
                 supp.add(supperList.get(i).getTitle());
             }
-            recipeList.setItems(supp);
+           recipeList.setItems(supp);
 
             recipeList.getSelectionModel().select(0);
 

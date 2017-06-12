@@ -163,6 +163,7 @@ public class FXMLDocumentController implements Initializable {
                 // todo fill listview
                 List<Recipe> selectedRecipes = (List<Recipe>) entities;
                 System.out.println("jestem tu");
+                result.removeAll(result);
                 for (int i = 0; i < selectedRecipes.size(); i++) {
                     result.add(selectedRecipes.get(i).getTitle());
                    System.out.println(selectedRecipes.get(i).getTitle());

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="760.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dietapp.FXMLAnalysisController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="760.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dietapp.FXMLAnalysisController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
@@ -22,7 +22,7 @@
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="116.0" prefWidth="770.0" style="-fx-background-color: #D3D3D3;">
                                  <children>
                                     <Label layoutX="14.0" layoutY="12.0" prefHeight="45.0" prefWidth="457.0" style="-fx-text-fill: #242f41; -fx-font-size: 24px;" text="Podaj swoje dane i wybierz danie z listy" />
-                                    <Button fx:id="analysisProblem" onAction="#onAnalysisButton" layoutX="479.0" layoutY="12.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="285.0" text="Wróć do zadania podejmowania decyzji" />
+                                    <Button fx:id="analysisProblem" layoutX="479.0" layoutY="12.0" mnemonicParsing="false" onAction="#onAnalysisButton" prefHeight="45.0" prefWidth="285.0" text="Wróć do zadania podejmowania decyzji" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="375.0" prefWidth="770.0" style="-fx-background-color: #242f41;">
@@ -34,7 +34,6 @@
                                     <TextField fx:id="weight" layoutX="65.0" layoutY="125.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 18px; " />
                                     <TextField fx:id="height" layoutX="278.0" layoutY="125.0" prefHeight="39.0" prefWidth="76.0" style="-fx-font-size: 18px;" />
                                     <TextField fx:id="years" layoutX="474.0" layoutY="125.0" prefHeight="31.0" prefWidth="91.0" style="-fx-font-size: 18px;" />
-                                    <Label layoutX="20.0" layoutY="199.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Aktywność fizyczna" />
                                     <RadioButton fx:id="genderM" layoutX="218.0" layoutY="44.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Mężczyzna">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="gender" />
@@ -43,15 +42,6 @@
                                     <RadioButton fx:id="genderW" layoutX="27.0" layoutY="44.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Kobieta" toggleGroup="$gender">
 
                                     </RadioButton>
-                                    <RadioButton fx:id="physicalS" layoutX="28.0" layoutY="246.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Niska">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="physicalActivity" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="physicalM" layoutX="199.0" layoutY="246.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Średnia" toggleGroup="$physicalActivity">
-
-                                    </RadioButton>
-                                    <RadioButton fx:id="physicalH" layoutX="380.0" layoutY="246.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Wysoka" toggleGroup="$physicalActivity" />
                                     <Label layoutX="151.0" layoutY="131.0" style="-fx-text-fill: white; -fx-font-size: 18;" text="[kg]" />
                                     <Label layoutX="363.0" layoutY="131.0" style="-fx-text-fill: white; -fx-font-size: 18;" text="[cm]" />
                                     <Label layoutX="576.0" layoutY="130.0" style="-fx-text-fill: white; -fx-font-size: 18;" text="[lata]" />
@@ -68,7 +58,7 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="768.0">
                                              <children>
-                                                <ListView id="entryList" prefHeight="303.0" prefWidth="772.0" />
+                                                <ListView fx:id="entryList" prefHeight="303.0" prefWidth="772.0" />
                                              </children>
                                           </AnchorPane>
                                       </items>
