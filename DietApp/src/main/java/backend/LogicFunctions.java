@@ -9,6 +9,7 @@ public class LogicFunctions {
     private List<Boolean> alphasW;
     private List<Boolean> alphasY;
 
+    private int internalDecisionIndex;
     private int decisionIndex1;
     private int decisionIndex2;
     private int analysisIndex1;
@@ -19,15 +20,17 @@ public class LogicFunctions {
         this.alphasY = Arrays.asList(false, false, false);
     }
 
-    public LogicFunctions(int analysisIndex1) {
+    public LogicFunctions(int analysisIndex1, int internalDecisionIndex) {
         this();
         this.analysisIndex1 = analysisIndex1;
+        this.internalDecisionIndex = internalDecisionIndex;
     }
 
-    public LogicFunctions(int decisionIndex1, int decisionIndex2) {
+    public LogicFunctions(int decisionIndex1, int decisionIndex2, int internalDecisionIndex) {
         this();
         this.decisionIndex1 = decisionIndex1;
         this.decisionIndex2 = decisionIndex2;
+        this.internalDecisionIndex = internalDecisionIndex;
     }
 
     public void setAlphasU(List<Boolean> alphasU) {
@@ -151,10 +154,10 @@ public class LogicFunctions {
     }
 
     public boolean functionY() {
-        return alphaU(decisionIndex1) && alphaU(decisionIndex2);
+        return alphaU(decisionIndex1) && alphaU(decisionIndex2) && alphaW(internalDecisionIndex);
     }
 
     public boolean functionU() {
-        return alphaY(analysisIndex1);
+        return alphaY(analysisIndex1) && alphaW(internalDecisionIndex);
     }
 }
