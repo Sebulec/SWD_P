@@ -19,12 +19,12 @@ public class LogicFunctions {
         this.alphasY = Arrays.asList(false, false, false);
     }
 
-    public LogicFunctions(int analysisIndex1){
+    public LogicFunctions(int analysisIndex1) {
         this();
         this.analysisIndex1 = analysisIndex1;
     }
 
-    public LogicFunctions(int decisionIndex1, int decisionIndex2){
+    public LogicFunctions(int decisionIndex1, int decisionIndex2) {
         this();
         this.decisionIndex1 = decisionIndex1;
         this.decisionIndex2 = decisionIndex2;
@@ -54,11 +54,11 @@ public class LogicFunctions {
         return alphasY.get(--index);
     }
 
-    public static boolean implies(boolean p, boolean q) {
+    private static boolean implies(boolean p, boolean q) {
         return !p || q;
     }
 
-    public boolean incrementBooleanList(List<Boolean> list) {
+    private static boolean incrementBooleanList(List<Boolean> list) {
         for (int index = 0; index < list.size(); index++) {
             Boolean cell = list.get(index);
             if (!cell) {
@@ -71,67 +71,76 @@ public class LogicFunctions {
         return false;
     }
 
-    public boolean function1() {
+    public boolean incrementAlphas() {
+        if (!incrementBooleanList(alphasU)) {
+            if (!incrementBooleanList(alphasY)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean function1() {
         return implies(alphaW(1) && (alphaU(1) || alphaU(2)), alphaW(4));
     }
 
-    public boolean function2() {
+    private boolean function2() {
         return implies(alphaW(1) && alphaU(3), alphaW(5));
     }
 
-    public boolean function3() {
+    private boolean function3() {
         return implies(alphaW(2) && alphaU(1), alphaW(4));
     }
 
-    public boolean function4() {
+    private boolean function4() {
         return implies(alphaW(2) && alphaU(2), alphaW(5));
     }
 
-    public boolean function5() {
+    private boolean function5() {
         return implies(alphaW(2) && alphaU(3), alphaW(6));
     }
 
-    public boolean function6() {
+    private boolean function6() {
         return implies(alphaW(3) && (alphaU(1) || alphaU(2)), alphaW(5));
     }
 
-    public boolean function7() {
+    private boolean function7() {
         return implies(alphaW(3) && alphaU(3), alphaW(6));
     }
 
-    public boolean function8() {
+    private boolean function8() {
         return implies((alphaU(4) || alphaU(6)) && alphaW(4), alphaY(1));
     }
 
-    public boolean function9() {
+    private boolean function9() {
         return implies((alphaU(4) || alphaU(6)) && (alphaW(5) || alphaW(6)), alphaY(2));
     }
 
-    public boolean function10() {
+    private boolean function10() {
         return implies(alphaU(5) && (alphaW(4) || alphaW(5)), alphaY(2));
     }
 
-    public boolean function11() {
+    private boolean function11() {
         return implies(alphaU(5) && alphaW(6), alphaY(3));
     }
 
-    public boolean function12() {
+    private boolean function12() {
         return implies(!((alphaU(4) || alphaU(6)) && alphaW(4)), !alphaY(1));
     }
 
-    public boolean function13() {
+    private boolean function13() {
         return implies(!((alphaU(4) || alphaU(6)) && (alphaW(5) || alphaW(6))), !alphaY(2));
     }
 
-    public boolean function14() {
+    private boolean function14() {
         return implies(!(alphaU(5) && (alphaW(4) || alphaW(5))), !alphaY(2));
     }
 
-    public boolean function15() {
+    private boolean function15() {
         return implies(!(alphaU(5) && alphaW(6)), !alphaU(3));
     }
 
-    public boolean function16() {
+    private boolean function16() {
         return !(alphaY(1) && alphaY(2)) && !(alphaY(2) && alphaY(3)) && !(alphaY(1) && alphaY(3));
     }
 
