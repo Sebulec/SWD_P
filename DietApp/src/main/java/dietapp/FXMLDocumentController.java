@@ -97,8 +97,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void onDecisionButton(ActionEvent e) throws IOException {
-        Node node=(Node) e.getSource();
-        Stage stage=(Stage) node.getScene().getWindow();
+        Node node = (Node) e.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("FXMLAnalysis.fxml"));
         Scene scene = new Scene(root);
         //  root.setController(new FXMLDocumentControler);
@@ -108,49 +108,68 @@ public class FXMLDocumentController implements Initializable {
     }
 
 
-
     @FXML
     private void onActionButton(ActionEvent e) throws FileNotFoundException {
 
         Button x = (Button) e.getSource();
+        RecipeType recipeType = null;
+        List<Recipe> recipes = null;
 
-        age=Integer.parseInt(years.getText());
-        w=Double.parseDouble(weight.getText());
-        h=Double.parseDouble(height.getText());
+        age = Integer.parseInt(years.getText());
+        w = Double.parseDouble(weight.getText());
+        h = Double.parseDouble(height.getText());
 
-        if(genderM.isSelected()){
-            g=Gender.male;
-        }
-        else{
-            g=Gender.female;
+        if (genderM.isSelected()) {
+            g = Gender.male;
+        } else {
+            g = Gender.female;
         }
 
-        if(physicalH.isSelected()){
-            aT=ActivityType.high;
-        }
-        else if(physicalM.isSelected()){
-            aT=ActivityType.normal;
-        }
-        else {
-            aT=ActivityType.low;
+        if (physicalH.isSelected()) {
+            aT = ActivityType.high;
+        } else if (physicalM.isSelected()) {
+            aT = ActivityType.normal;
+        } else {
+            aT = ActivityType.low;
         }
 
         if (x == supper) {
             recipeList.setItems(supp);
-            pageList=supperList;
-
+            pageList = supperList;
+            recipeType = RecipeType.supper;
+            recipes = supperList;
         }
         if (x == breakfast) {
             recipeList.setItems(breakf);
-            pageList=breakfastList;
+            pageList = breakfastList;
+            recipeType = RecipeType.breakfast;
+            recipes = breakfastList;
         }
         if (x == dinner) {
             recipeList.setItems(dinn);
-            pageList=dinnerList;
+            pageList = dinnerList;
+            recipeType = RecipeType.dinner;
+            recipes = dinnerList;
         }
 
-        User Marysia= new User(age,w,h,g,aT);
-        System.out.println(Marysia.getAge()+ " "+Marysia.getHeight()+" "+Marysia.getWeight()+" "+Marysia.getActivityType());
+        User Marysia = new User(age, w, h, g, aT);
+
+        DecisionMaker decisionMaker = new DecisionMaker();
+
+        decisionMaker.makeDecision(Marysia, recipeType, recipes, new CompletionHandler() {
+            @Override
+            public void completed(List<? extends DietEntity> entities) {
+                // todo fill listview
+                List<Recipe> selectedRecipes = (List<Recipe>) entities;
+            }
+
+            @Override
+            public void stopped() {
+                // ignore
+            }
+        });
+
+        System.out.println(Marysia.getAge() + " " + Marysia.getHeight() + " " + Marysia.getWeight() + " " + Marysia.getActivityType());
     }
 
     String page;
@@ -173,22 +192,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         try {
-
-            DecisionMaker decisionMaker = new DecisionMaker();
-            User user = new User(27,62., 157., Gender.female, ActivityType.low);
-
-            decisionMaker.makeDecision(user, RecipeType.supper, new RecipeFactory().getRecipesWithType(RecipeType.dinner), new CompletionHandler() {
-                @Override
-                public void completed(List<Recipe> recipes) {
-
-                }
-
-                @Override
-                public void stopped() {
-
-                }
-            });
-
             genderW.setSelected(true);
             physicalS.setSelected(true);
             RecipeFactory.getRecipesWithType(RecipeType.supper);
