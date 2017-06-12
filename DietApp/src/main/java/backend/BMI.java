@@ -1,13 +1,5 @@
 package backend;
 
-/**
- * Created by sebastiankotarski on 11.06.2017.
- */
-enum WeightType {
-    underweight, //niedowaga
-    normal,
-    flesh // nadwaga
-}
 public class BMI {
 
     public Double value;
