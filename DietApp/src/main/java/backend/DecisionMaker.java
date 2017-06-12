@@ -50,28 +50,30 @@ public class DecisionMaker {
         }
 
         logicFunctions = new LogicFunctions(decisionIndex1, decisionIndex2, decisionIndex3);
-        HashSet<List<Boolean>> setY = new HashSet<>();
+        HashSet<List<Boolean>> setY1 = new HashSet<>();
+        HashSet<List<Boolean>> setY2 = new HashSet<>();
         while (logicFunctions.incrementAlphas()) {
             List<Boolean> alphasY = new ArrayList<>(logicFunctions.getAlphasY());
-            if (logicFunctions.functionF()) {
-                setY.add(alphasY);
+            if ((logicFunctions.functionF() && logicFunctions.functionY()) && logicFunctions.functionY()) {
+                setY1.add(alphasY);
+            } else if ((logicFunctions.functionF() && logicFunctions.functionY()) && !logicFunctions.functionY()) {
+                setY2.add(alphasY);
             }
-//            else if (logicFunctions.functionF() && !logicFunctions.functionY()) {
-//                setY.remove(alphasY);
-//            }
         }
+        setY1.removeAll(setY2);
         Set<CaloriesLevel> caloriesLevels = new HashSet<>();
-        setY.stream().forEach((alphasY) -> {
+        setY1.stream().forEach((alphasY) -> {
             if (alphasY.get(0)) {
                 caloriesLevels.add(CaloriesLevel.low);
-            } else if (alphasY.get(1)) {
+            }
+            if (alphasY.get(1)) {
                 caloriesLevels.add(CaloriesLevel.normal);
-            } else if (alphasY.get(2)) {
+            }
+            if (alphasY.get(2)) {
                 caloriesLevels.add(CaloriesLevel.high);
             }
         });
 //        completionHandler.completed(recipes.stream().filter((recipe -> recipe.caloriesLevel)));
-        completionHandler.completed(recipes);
     }
 
     public Recipe[] makeDecision(User user, CaloriesLevel caloriesLevel, CompletionHandler completionHandler) {

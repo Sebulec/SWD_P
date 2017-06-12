@@ -149,7 +149,7 @@ public class FXMLDocumentController implements Initializable {
         try {
 
             DecisionMaker decisionMaker = new DecisionMaker();
-            User user = new User(23,73., 173., Gender.male, ActivityType.high);
+            User user = new User(27,62., 157., Gender.female, ActivityType.low);
 
             decisionMaker.makeDecision(user, RecipeType.supper, new RecipeFactory().getRecipesWithType(RecipeType.dinner), new CompletionHandler() {
                 @Override
