@@ -6,7 +6,7 @@ public class BMI {
     public WeightType weightType;
 
     public BMI(User user) {
-        value = (user.getWeight()) / Math.pow(user.getHeight(),2);
+        value = (user.getWeight()) / Math.pow(user.getHeight() * 0.01,2);
         if (value < 18.5) {
             weightType = WeightType.underweight;
         } else if( value > 25.) {
