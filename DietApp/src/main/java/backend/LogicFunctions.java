@@ -45,6 +45,14 @@ public class LogicFunctions {
         this.alphasY = alphasY;
     }
 
+    public List<Boolean> setAlphasU(){
+        return alphasY;
+    }
+
+    public List<Boolean> setAlphasY(){
+        return alphasY;
+    }
+
     public Boolean alphaU(int index) {
         return alphasU.get(--index);
     }
