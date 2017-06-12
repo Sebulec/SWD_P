@@ -1,14 +1,5 @@
 package backend;
 
-/**
- * Created by sebastiankotarski on 11.06.2017.
- */
-enum Gender {
-    male, female
-}
-enum ActivityType {
-    low, normal,high
-}
 public class User {
 
     Integer age;
@@ -27,6 +18,22 @@ public class User {
         this.bmi = new BMI(this);
         this.activityType = activityType;
         this.bmr = new BMR(this);
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public BMI getBmi() {
+        return bmi;
+    }
+
+    public BMR getBmr() {
+        return bmr;
+    }
+
+    public ActivityType getActivityType() {
+        return activityType;
     }
 
     public Integer getAge() {
@@ -51,5 +58,21 @@ public class User {
 
     public void setHeight(Double height) {
         this.height = height;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setBmi(BMI bmi) {
+        this.bmi = bmi;
+    }
+
+    public void setBmr(BMR bmr) {
+        this.bmr = bmr;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
     }
 }

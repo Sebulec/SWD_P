@@ -1,7 +1,5 @@
 package backend;
 
-import javax.security.auth.login.LoginContext;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,32 +8,47 @@ import java.util.List;
  */
 public class DecisionMaker {
 
-    public Recipe[] makeDecision(User user, RecipeType recipeType, CompletionHandler completionHandler) {
+    public void makeDecision(User user, RecipeType recipeType, CompletionHandler completionHandler) {
         Recipe[] recipes = null;
-        LogicFunctions logicFunctions = new LogicFunctions();
+        LogicFunctions logicFunctions;
+        Integer decisionIndex1 = 0;
+        Integer decisionIndex2 = 0;
+
         switch (recipeType) {
             case breakfast:
-                logicFunctions.alphaU(4);
+                decisionIndex2 = 4;
                 break;
             case dinner:
-                logicFunctions.alphaU(5);
+                decisionIndex2 = 5;
                 break;
             case supper:
-                logicFunctions.alphaU(6);
+                decisionIndex2 = 6;
                 break;
         }
         switch (user.activityType) {
             case low:
-                logicFunctions.alphaU(1);
+                decisionIndex1 = 1;
                 break;
             case normal:
-                logicFunctions.alphaU(2);
+                decisionIndex1 = 2;
                 break;
             case high:
-                logicFunctions.alphaU(3);
+                decisionIndex1 = 3;
                 break;
         }
-        return recipes;
+        logicFunctions = new LogicFunctions(decisionIndex1,decisionIndex2);
+//        List<Boolean> alphasW
+        switch (user.bmi.weightType) {
+            case underweight:
+                logicFunctions.setAlphasU(Arrays.asList(true,false,false));
+                break;
+            case normal:
+                logicFunctions.setAlphasU(Arrays.asList(false,true,false));
+                break;
+            case flesh:
+                logicFunctions.setAlphasU(Arrays.asList(false,false,true));
+                break;
+        }
     }
 
 //    public Recipe[] makeDecision(User user, CaloriesLevel caloriesLevel, CompletionHandler completionHandler) {

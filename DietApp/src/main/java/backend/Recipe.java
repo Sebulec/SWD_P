@@ -9,14 +9,6 @@ import com.google.gson.*;
 
 import java.lang.reflect.Type;
 
-/**
- * @author sebastiankotarski
- */
-
-enum CaloriesLevel {
-    low, normal, high
-}
-
 public class Recipe implements JsonDeserializer<Recipe> {
 
     String title;
