@@ -34,12 +34,12 @@
                                                         <Label layoutX="13.0" layoutY="166.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Waga" />
                                                         <Label layoutX="183.0" layoutY="167.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Wzrost" />
                                                         <Label layoutX="340.0" layoutY="167.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Wiek" />
-                                                        <TextField fx:id="weight" layoutX="71.0" layoutY="161.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 18px; -fx-text-fill: white;" />
-                                                        <TextField fx:id="height" layoutX="243.0" layoutY="161.0" prefHeight="31.0" prefWidth="78.0" style="-fx-font-size: 18px; -fx-text-fill: white;" />
-                                                        <TextField fx:id="years" layoutX="403.0" layoutY="161.0" prefHeight="31.0" prefWidth="91.0" style="-fx-font-size: 18px; -fx-text-fill: white;" />
+                                                        <TextField fx:id="weight" layoutX="71.0" layoutY="161.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 18px; " />
+                                                        <TextField fx:id="height" layoutX="243.0" layoutY="161.0" prefHeight="31.0" prefWidth="78.0" style="-fx-font-size: 18px;" />
+                                                        <TextField fx:id="years" layoutX="403.0" layoutY="161.0" prefHeight="31.0" prefWidth="91.0" style="-fx-font-size: 18px;" />
                                                         <Label layoutX="18.0" layoutY="250.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Aktywność fizyczna" />
                                                         <Label layoutX="18.0" layoutY="385.0" style="-fx-font-size: 18px; -fx-text-fill: white;" text="Wybierz rodzaj posiłku" />
-                                                        <Button fx:id="breakfast" layoutX="20.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: #242f41;" text="Śniadanie" />
+                                                        <Button fx:id="breakfast"  layoutX="20.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: #242f41;" text="Śniadanie" />
                                                         <Button fx:id="dinner" layoutX="197.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="122.0" style="-fx-font-size: 18px; -fx-text-fill: #242f41;" text="Obiad" />
                                                         <Button fx:id="supper" layoutX="376.0" layoutY="462.0" mnemonicParsing="false" onAction="#onActionButton" prefHeight="31.0" prefWidth="114.0" style="-fx-font-size: 18px;" text="Kolacja" />
 
@@ -57,6 +57,7 @@
                                                         </RadioButton>
                                                         <RadioButton fx:id="physicalM" layoutX="197.0" layoutY="297.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Średnia" toggleGroup="$physicalActivity" />
                                                         <RadioButton fx:id="physicalH" layoutX="378.0" layoutY="297.0" mnemonicParsing="false" style="-fx-font-size: 18 px; -fx-text-fill: white;" text="Wysoka" toggleGroup="$physicalActivity" />
+
                                                     </children>
                                                 </AnchorPane>
                                             </items>

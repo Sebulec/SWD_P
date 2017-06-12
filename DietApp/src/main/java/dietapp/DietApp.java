@@ -23,6 +23,7 @@ public class DietApp extends Application {
         Scene scene = new Scene(root);
       //  root.setController(new FXMLDocumentControler);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         System.out.println("You clicked me!");
     }
