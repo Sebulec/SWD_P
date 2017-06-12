@@ -16,12 +16,15 @@ import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import sun.security.krb5.internal.crypto.Des;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by frasz on 12.06.2017.
@@ -117,6 +120,23 @@ public class FXMLAnalysisController implements Initializable {
 
         User Marysia= new User(age,w,h,g,aT);
         System.out.println(Marysia.getAge()+ " "+Marysia.getHeight()+" "+Marysia.getWeight()+" "+Marysia.getActivityType());
+
+        String recipeName = recipeList.getSelectionModel().getSelectedItem();
+        Recipe recipe = this.supperList.stream().filter((recipe1) -> recipe1.getTitle().equals(recipeName)).collect(Collectors.toList()).get(0);
+
+        DecisionMaker decisionMaker = new DecisionMaker();
+        decisionMaker.makeAnalysis(Marysia, recipe, new CompletionHandler() {
+            @Override
+            public void completed(List<? extends DietEntity> entities) {
+                List<AnalysisResponse> selectedAnalysisResponses = (List<AnalysisResponse>) entities;
+            }
+
+            @Override
+            public void stopped() {
+
+            }
+        });
+
     }
 
     String page;
@@ -131,8 +151,9 @@ public class FXMLAnalysisController implements Initializable {
             //RecipeFactory.getRecipesWithType(RecipeType.supper);
 
             RecipeFactory recipeF = new RecipeFactory();
-            supperList = recipeF.getRecipesWithType(RecipeType.supper);
 
+            supperList = Stream.concat(recipeF.getRecipesWithType(RecipeType.breakfast).stream(), recipeF.getRecipesWithType(RecipeType.dinner).stream()).collect(Collectors.toList());
+            supperList.addAll(recipeF.getRecipesWithType(RecipeType.supper));
 
             for (int i = 0; i < supperList.size() - 1; i++) {
                 supp.add(supperList.get(i).getTitle());
