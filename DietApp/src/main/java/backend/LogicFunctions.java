@@ -4,15 +4,43 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LogicFunctions {
+
+    private List<Boolean> alphasU;
+    private List<Boolean> alphasW;
+    private List<Boolean> alphasY;
+
+    private int decisionIndex1;
+    private int decisionIndex2;
+    private int analysisIndex1;
+
     public LogicFunctions() {
         this.alphasU = Arrays.asList(false, false, false, false, false, false);
         this.alphasW = Arrays.asList(false, false, false, false, false, false);
         this.alphasY = Arrays.asList(false, false, false);
     }
 
-    private List<Boolean> alphasU;
-    private List<Boolean> alphasW;
-    private List<Boolean> alphasY;
+    public LogicFunctions(int analysisIndex1){
+        this();
+        this.analysisIndex1 = analysisIndex1;
+    }
+
+    public LogicFunctions(int decisionIndex1, int decisionIndex2){
+        this();
+        this.decisionIndex1 = decisionIndex1;
+        this.decisionIndex2 = decisionIndex2;
+    }
+
+    public void setAlphasU(List<Boolean> alphasU) {
+        this.alphasU = alphasU;
+    }
+
+    public void setAlphasW(List<Boolean> alphasW) {
+        this.alphasW = alphasW;
+    }
+
+    public void setAlphasY(List<Boolean> alphasY) {
+        this.alphasY = alphasY;
+    }
 
     public Boolean alphaU(int index) {
         return alphasU.get(--index);
@@ -30,7 +58,7 @@ public class LogicFunctions {
         return !p || q;
     }
 
-    public Boolean incrementBooleanList(List<Boolean> list) {
+    public boolean incrementBooleanList(List<Boolean> list) {
         for (int index = 0; index < list.size(); index++) {
             Boolean cell = list.get(index);
             if (!cell) {
@@ -111,5 +139,13 @@ public class LogicFunctions {
         return function1() && function2() && function3() && function4() && function5() && function6() &&
                 function7() && function8() && function9() && function10() && function11() && function12() &&
                 function13() && function14() && function15() && function15() && function16();
+    }
+
+    public boolean functionY() {
+        return alphaU(decisionIndex1) && alphaU(decisionIndex2);
+    }
+
+    public boolean functionU() {
+        return alphaY(analysisIndex1);
     }
 }
