@@ -27,8 +27,22 @@ public class LogicFunctions {
         return alphasY.get(--index);
     }
 
-    public boolean implies(boolean p, boolean q) {
+    public static boolean implies(boolean p, boolean q) {
         return !p || q;
+    }
+
+    public Boolean incrementBooleanList(List<Boolean> list){
+        for (int index = 0; index < list.size(); index++) {
+            Boolean cell = list.get(index);
+            if(!cell) {
+                list.set(index,true);
+                return true;
+            }
+            else{
+                list.set(index,false);
+            }
+        }
+        return false;
     }
 
     public boolean function1() {
