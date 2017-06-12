@@ -92,4 +92,9 @@ public class Recipe implements JsonDeserializer<Recipe> {
         }
     }
 
+    @Override
+    public String toString() {
+        return this.getTitle();
+    }
+
 }
