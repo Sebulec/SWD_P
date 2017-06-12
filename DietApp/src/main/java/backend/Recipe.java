@@ -9,7 +9,7 @@ import com.google.gson.*;
 
 import java.lang.reflect.Type;
 
-public class Recipe implements JsonDeserializer<Recipe> {
+public class Recipe extends DietEntity implements JsonDeserializer<Recipe> {
 
     String title;
     Double calories;
@@ -18,7 +18,6 @@ public class Recipe implements JsonDeserializer<Recipe> {
     Double fat;
     String url;
     RecipeType recipeType;
-    CaloriesLevel caloriesLevel;
 
     public Recipe(String title, Double calories, Double carbohydrates, Double proteins, Double fat, String url) {
         this.title = title;

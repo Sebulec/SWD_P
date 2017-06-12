@@ -3,6 +3,7 @@ package backend;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by sebastiankotarski on 11.06.2017.
@@ -73,12 +74,73 @@ public class DecisionMaker {
                 caloriesLevels.add(CaloriesLevel.high);
             }
         });
-//        completionHandler.completed(recipes.stream().filter((recipe -> recipe.caloriesLevel)));
+        completionHandler.completed(recipes.stream().filter((recipe -> caloriesLevels.contains(recipe.getCaloriesLevel()))).collect(Collectors.toList()));
     }
 
-    public Recipe[] makeDecision(User user, CaloriesLevel caloriesLevel, CompletionHandler completionHandler) {
-        Recipe[] recipes = null;
+    public void makeAnalysis(User user, Recipe recipe, CompletionHandler completionHandler) {
+        Set<AnalysisResponse> analysisResponses = new HashSet<>();
+        LogicFunctions logicFunctions;
 
-        return null;
+        Integer analysisIndex1 = 0;
+        Integer internalDecisionIndex = 0;
+
+        switch (recipe.getCaloriesLevel()) {
+            case low:
+                analysisIndex1 = 1;
+                break;
+            case normal:
+                analysisIndex1 = 2;
+                break;
+            case high:
+                analysisIndex1 = 3;
+                break;
+        }
+        switch (user.bmi.weightType) {
+            case underweight:
+                internalDecisionIndex = 1;
+                break;
+            case normal:
+                internalDecisionIndex = 2;
+                break;
+            case flesh:
+                internalDecisionIndex = 3;
+                break;
+        }
+
+        logicFunctions = new LogicFunctions(analysisIndex1, internalDecisionIndex);
+        HashSet<List<Boolean>> setU1 = new HashSet<>();
+        while (logicFunctions.incrementAlphas()) {
+            List<Boolean> alphasU = new ArrayList<>(logicFunctions.getAlphasU());
+            if (logicFunctions.functionU() && logicFunctions.functionF()) {
+                setU1.add(alphasU);
+            }
+        }
+
+        setU1.stream().forEach((alphasU) -> {
+            AnalysisResponse analysisResponse = new AnalysisResponse();
+            if (alphasU.get(0)) {
+                analysisResponse.activityType = ActivityType.low;
+            }
+            if (alphasU.get(1)) {
+                analysisResponse.activityType = ActivityType.normal;
+            }
+            if (alphasU.get(2)) {
+                analysisResponse.activityType = ActivityType.high;
+            }
+            if (alphasU.get(3)) {
+                analysisResponse.recipeType = RecipeType.breakfast;
+            }
+            if (alphasU.get(4)) {
+                analysisResponse.recipeType = RecipeType.dinner;
+            }
+            if (alphasU.get(5)) {
+                analysisResponse.recipeType = RecipeType.supper;
+            }
+            if (analysisResponse.getActivityType() != null && analysisResponse.getRecipeType() != null && analysisResponses.stream().filter((aR) -> aR.getRecipeType() == analysisResponse.getRecipeType() && aR.getRecipeType() == analysisResponse.getRecipeType()).count() == 0) {
+                analysisResponses.add(analysisResponse);
+            }
+        });
+
+        completionHandler.completed(new ArrayList<AnalysisResponse>(analysisResponses));
     }
 }

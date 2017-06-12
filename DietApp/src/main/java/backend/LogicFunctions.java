@@ -46,7 +46,7 @@ public class LogicFunctions {
     }
 
     public List<Boolean> getAlphasU(){
-        return alphasY;
+        return alphasU;
     }
 
     public List<Boolean> getAlphasY(){
@@ -154,13 +154,13 @@ public class LogicFunctions {
     }
 
     private boolean function16() {
-        return !(alphaY(1) && alphaY(2)) && !(alphaY(2) && alphaY(3)) && !(alphaY(1) && alphaY(3));
+        return !(alphaW(4) && alphaW(5)) && !(alphaW(5) && alphaW(6)) && !(alphaW(4) && alphaW(6));
     }
 
     public boolean functionF() {
         return function1() && function2() && function3() && function4() && function5() && function6() &&
                 function7() && function8() && function9() && function10() && function11() && function12() &&
-                function13() && function14() && function15() && function15();
+                function13() && function14() && function15() && function15() && function16();
     }
 
     public boolean functionY() {
